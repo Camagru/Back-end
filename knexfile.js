@@ -4,11 +4,12 @@ module.exports = {
 
   development: {
     client: 'sqlite3',
+    useNullAsDefault: true,
     connection: {
+      // filename: '../DB_data/camagru.sqlite3'
       filename: './camagru.sqlite3'
     }
   },
-  useNullAsDefault:true,
   pool: {
     afterCreate: (conn, done) => {
       // runs after a connection is made to the sqlite engine
