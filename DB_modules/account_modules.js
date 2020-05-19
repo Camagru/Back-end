@@ -11,10 +11,16 @@ module.exports = {
 }
 function createAccount(user) {
     return db('account')
-    .insert(user);
+        .insert(user);
 }
 
 function get() {
     console.log('here')
     return db('account')
+}
+
+function loginUser(username) {
+    return db('account')
+        .where('name', username)
+        .first()
 }

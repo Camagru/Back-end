@@ -1,7 +1,8 @@
 const express = require('express');
-const server  = express();
 const db_account = require('./DB_modules/account_modules')
+const bcrypt = require('bcryptjs');
 
+const server  = express();
 
 server.get('/', (req, res) => {
 
@@ -14,8 +15,11 @@ server.get('/', (req, res) => {
         })
 })
 
-server.post('/', (req, res) => {
+server.post('/register', (req, res) => {
     const data = req.body;
+
+    data.password = bcrypt.hashSync(data.password)
+
 
     db_account.createAccount(data)
         .then(() => {
